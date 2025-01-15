@@ -1,0 +1,91 @@
+﻿@model ContactDto // Specifies that this view uses the ContactDto model to bind data.
+
+@{
+    // Code block for any server-side logic or variables. Currently left empty.
+}
+
+<div class="row">
+    <!-- Creates a Bootstrap row to structure the layout. -->
+    <div class="col-lg-9 mx-auto rounded border p-4">
+        <!-- Creates a centered column with styling for padding, rounded borders, and width. -->
+        <h2 class="text-center mb-3">Contact Form</h2> <!-- Displays the page heading centered with bottom margin. -->
+        <!-- Display the email address dynamically using ViewData -->
+        <div class="row mb-3">
+            <!-- Creates a row for the email display. -->
+            <div class="col-sm-4">Email:</div> <!-- Label for the email address. -->
+            <div class="col-sm-8">@ViewData["EmailAddress"]</div> <!-- Displays the email address passed from the controller using ViewData. -->
+        </div>
+
+        <!-- Display the address dynamically using ViewBag -->
+        <div class="row mb-3">
+            <!-- Creates a row for the address display. -->
+            <div class="col-sm-4">Address:</div> <!-- Label for the address. -->
+            <div class="col-sm-8">@ViewBag.Address</div> <!-- Displays the address passed from the controller using ViewBag. -->
+        </div>
+
+        <br /> <!-- Adds a line break for spacing. -->
+        <!-- Display a success message if one exists in ViewBag -->
+        @if (ViewBag.SuccessMessage != null) // Checks if a success message is present.
+        {
+            <div class='alert alert-success alert-dismissible fade show' role='alert'>
+                <!-- Bootstrap alert for success messages. -->
+                <strong>@ViewBag.SuccessMessage</strong> <!-- Displays the success message. -->
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button> <!-- Button to dismiss the alert. -->
+            </div>
+        }
+
+        <!-- Begin the contact form -->
+        <form method="post">
+            <!-- Defines a form to submit data to the server using POST method. -->
+            <!-- Input field for First Name -->
+            <div class="row mb-3">
+                <!-- Creates a row for the First Name input. -->
+                <label class="col-sm-4 col-form-label">First Name</label> <!-- Label for the First Name input. -->
+                <div class="col-sm-8">
+                    <input class="form-control" asp-for="FirstName"> <!-- Binds the input to the FirstName property of the model. -->
+                    <span asp-validation-for="FirstName" class="text-danger"></span> <!-- Displays validation errors for the FirstName property. -->
+                </div>
+            </div>
+
+            <!-- Input field for Last Name -->
+            <div class="row mb-3">
+                <!-- Creates a row for the Last Name input. -->
+                <label class="col-sm-4 col-form-label">Last Name</label> <!-- Label for the Last Name input. -->
+                <div class="col-sm-8">
+                    <input class="form-control" asp-for="LastName"> <!-- Binds the input to the LastName property of the model. -->
+                    <span asp-validation-for="LastName" class="text-danger"></span> <!-- Displays validation errors for the LastName property. -->
+                </div>
+            </div>
+
+            <!-- Input field for Email -->
+            <div class="row mb-3">
+                <!-- Creates a row for the Email input. -->
+                <label class="col-sm-4 col-form-label">Email</label> <!-- Label for the Email input. -->
+                <div class="col-sm-8">
+                    <input class="form-control" asp-for="Email"> <!-- Binds the input to the Email property of the model. -->
+                    <span asp-validation-for="Email" class="text-danger"></span> <!-- Displays validation errors for the Email property. -->
+                </div>
+            </div>
+
+            <!-- Input field for Message -->
+            <div class="row mb-3">
+                <!-- Creates a row for the Message input. -->
+                <label class="col-sm-4 col-form-label">Message</label> <!-- Label for the Message input. -->
+                <div class="col-sm-8">
+                    <input class="form-control" asp-for="Message"> <!-- Binds the input to the Message property of the model. -->
+                    <span asp-validation-for="Message" class="text-danger"></span> <!-- Displays validation errors for the Message property. -->
+                </div>
+            </div>
+
+            <!-- Submit button -->
+            <div class="row mb-3">
+                <!-- Creates a row for the Submit button. -->
+                <div class="col-sm-4"></div> <!-- Empty column for spacing. -->
+                <div class="col-sm-8">
+                    <button type="submit" class="btn btn-primary">Submit</button> <!-- Button to submit the form. -->
+                </div>
+            </div>
+        </form> <!-- End of the form -->
+
+    </div>
+</div> <!-- End of the row -->
